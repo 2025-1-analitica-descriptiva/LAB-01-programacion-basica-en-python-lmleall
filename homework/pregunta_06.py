@@ -26,3 +26,48 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+import csv
+with open('./files/input/data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+
+        listatotal = []
+        
+        for fila in lector_csv:
+            #print(fila)
+            listafila = []
+            for col in fila:
+                 if ":" in col:
+                    listaprov = col.split(":")
+                    listafila.append(listaprov)
+            posicion = listafila[0][0].index("\t")
+            listafila[0][0] = listafila[0][0][posicion+1:]
+            #print(listafila)
+            for l in listafila:
+                 listatotal.append(l)   
+        
+        dic = {}
+        for lista in listatotal:
+            if lista[0] not in dic: 
+                listaxllave = []   
+                listaxllave.append(int(lista[1]))
+                dic[lista[0]] = listaxllave
+            else:
+                dic[lista[0]] = dic[lista[0]] + [int(lista[1])]
+
+        for llave in dic:
+            maximo = max(dic[llave])
+            minimo = min(dic[llave])
+            dic[llave] = (minimo,maximo)
+
+        #print(listatotal)
+        #print(dic)
+
+        listatuplas = sorted(list(dic.items()))
+        
+        listatrituplas = []
+        for tupla in listatuplas:
+             tuplaanid = tupla[1]
+             tuplamod = (tupla[0],tuplaanid[0],tuplaanid[1])
+             listatrituplas.append(tuplamod)
+
+        print(listatrituplas)

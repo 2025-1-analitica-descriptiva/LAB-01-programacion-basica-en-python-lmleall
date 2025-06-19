@@ -15,3 +15,23 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    
+import csv
+with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-python-lmleall\files\input\data.csv", 'r') as archivo_csv:
+    lector_csv = csv.reader(archivo_csv)
+    
+    dict = {}
+    
+    for fila in lector_csv:
+        letra = fila[0][0]  
+        valor = int(fila[0][2])
+        
+        if letra not in dict:
+            dict[letra] = valor
+        else:
+            dict[letra] += valor
+
+suma_por_letra = sorted(dict.items())
+
+print(suma_por_letra)
+   

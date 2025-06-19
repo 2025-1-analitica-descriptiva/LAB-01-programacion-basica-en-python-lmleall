@@ -14,3 +14,15 @@ def pregunta_01():
     214
 
     """
+
+import csv
+with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-python-lmleall\files\input\data.csv", 'r') as archivo_csv:
+    lector_csv = csv.reader(archivo_csv)
+    suma = 0
+    for fila in lector_csv:        
+        columna_1 = fila[0]
+        columna_2 = columna_1[2]
+        
+        suma = suma + int(columna_2)
+    
+    print(suma)

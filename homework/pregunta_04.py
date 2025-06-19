@@ -26,3 +26,19 @@ def pregunta_04():
      ('12', 3)]
 
     """
+import csv
+with open('./files/input/data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        
+        listameses = []
+        for fila in lector_csv:
+            columna_1 = fila[0]
+            columna_3 = columna_1.split("\t")
+            fecha = columna_3[2]
+            mes = fecha.split("-")[1]
+            listameses.append(mes)
+
+        from collections import Counter
+        listatuplas = sorted(Counter(listameses).items())
+
+        print(listatuplas)    

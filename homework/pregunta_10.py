@@ -20,3 +20,20 @@ def pregunta_10():
 
 
     """
+import csv
+
+with open('./files/input/data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv, delimiter="\t")
+        
+        listatrituplas = []
+
+        for fila in lector_csv:
+            #print(fila)
+            listacol4 = fila[3].split(",")
+            listacol5 = fila[4].split(",")
+            #print(listacol4)
+            #print(listacol5)
+            tritupla = (fila[0],len(listacol4),len(listacol5))
+            listatrituplas.append(tritupla)
+
+print(listatrituplas)

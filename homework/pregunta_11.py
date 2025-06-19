@@ -16,3 +16,21 @@ def pregunta_11():
 
 
     """
+import csv
+
+with open('./files/input/data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv, delimiter="\t")
+        
+        dic = {}
+
+        for fila in lector_csv:
+            #print(fila)
+            listacol4 = fila[3].split(",")
+            #print(listacol4)           
+            for letra in listacol4:
+                if letra not in dic:
+                    dic[letra] = int(fila[1])
+                else:
+                    dic[letra] = dic[letra] + int(fila[1])
+        dic = dict(sorted(dic.items()))
+print(dic)
