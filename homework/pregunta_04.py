@@ -41,4 +41,4 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
         from collections import Counter
         listatuplas = sorted(Counter(listameses).items())
 
-        print(listatuplas)    
+   

@@ -51,4 +51,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
              dic[key] = sorted(list(set(dic[key])))
 
         dic = sorted(dic.items())
-print(dic)

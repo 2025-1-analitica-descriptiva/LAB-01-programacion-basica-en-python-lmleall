@@ -37,4 +37,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
                 dic[fila[0]] = dic[fila[0]] + suma
                 
         dic = dict(sorted(dic.items()))
-print(dic)

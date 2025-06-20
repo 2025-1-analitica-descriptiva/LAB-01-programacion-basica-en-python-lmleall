@@ -40,5 +40,4 @@ with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-pyt
 
     # Imprimir la lista de tuplas   
     
-    print(lista_tuplas)
 

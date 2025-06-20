@@ -33,4 +33,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
                 else:
                     dic[letra] = dic[letra] + int(fila[1])
         dic = dict(sorted(dic.items()))
-print(dic)

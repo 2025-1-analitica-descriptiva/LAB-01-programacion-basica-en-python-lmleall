@@ -47,7 +47,7 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
              tuplamod = (tupla[0],tuplaanid[0],tuplaanid[1])
              listatrituplas.append(tuplamod)
                  
-        print(listatrituplas)
+
 
             
     

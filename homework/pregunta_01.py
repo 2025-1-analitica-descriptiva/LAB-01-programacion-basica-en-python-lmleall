@@ -25,4 +25,3 @@ with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-pyt
         
         suma = suma + int(columna_2)
     
-    print(suma)

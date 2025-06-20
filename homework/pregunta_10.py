@@ -36,4 +36,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
             tritupla = (fila[0],len(listacol4),len(listacol5))
             listatrituplas.append(tritupla)
 
-print(listatrituplas)

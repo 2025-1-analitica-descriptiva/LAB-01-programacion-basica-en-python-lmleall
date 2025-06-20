@@ -33,5 +33,4 @@ with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-pyt
 
 suma_por_letra = sorted(dict.items())
 
-print(suma_por_letra)
    

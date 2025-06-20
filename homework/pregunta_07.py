@@ -45,4 +45,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
                 dic[int(col[1])] = dic[int(col[1])] + [col[0]]
                 
         dic = sorted(dic.items())
-print(dic)

@@ -52,4 +52,3 @@ with open('./files/input/data.csv', 'r') as archivo_csv:
         #print(dic)
         #Posteriormente se convierte este objeto en una lista de tuplas (.items()) y se organiza alfabeticamente con sorted. Para finalmente construir un diccionario a partir de estas tuplas con dict() 
         dic = dict(sorted(count.items()))
-print(dic)
