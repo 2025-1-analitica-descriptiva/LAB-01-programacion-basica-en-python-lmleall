@@ -26,47 +26,31 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
-import csv
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv)
+    with open('./files/input/data.csv', 'r') as archivo_csv:
+        valores_por_clave = {}
 
-        listatotal = []
-        
-        for fila in lector_csv:
-            #print(fila)
-            listafila = []
-            for col in fila:
-                 if ":" in col:
-                    listaprov = col.split(":")
-                    listafila.append(listaprov)
-            posicion = listafila[0][0].index("\t")
-            listafila[0][0] = listafila[0][0][posicion+1:]
-            #print(listafila)
-            for l in listafila:
-                 listatotal.append(l)   
-        
-        dic = {}
-        for lista in listatotal:
-            if lista[0] not in dic: 
-                listaxllave = []   
-                listaxllave.append(int(lista[1]))
-                dic[lista[0]] = listaxllave
-            else:
-                dic[lista[0]] = dic[lista[0]] + [int(lista[1])]
+        for fila in archivo_csv:
+            columnas = fila.strip().split('\t')
+            if len(columnas) < 5:
+                continue
 
-        for llave in dic:
-            maximo = max(dic[llave])
-            minimo = min(dic[llave])
-            dic[llave] = (minimo,maximo)
+            columna_5 = columnas[4]
+            pares = columna_5.split(',')
 
-        #print(listatotal)
-        #print(dic)
+            for par in pares:
+                clave, valor = par.split(':')
+                valor = int(valor)
 
-        listatuplas = sorted(list(dic.items()))
-        
-        listatrituplas = []
-        for tupla in listatuplas:
-             tuplaanid = tupla[1]
-             tuplamod = (tupla[0],tuplaanid[0],tuplaanid[1])
-             listatrituplas.append(tuplamod)
+                if clave not in valores_por_clave:
+                    valores_por_clave[clave] = [valor]
+                else:
+                    valores_por_clave[clave].append(valor)
+
+        resultado = []
+        for clave in sorted(valores_por_clave.keys()):
+            minimo = min(valores_por_clave[clave])
+            maximo = max(valores_por_clave[clave])
+            resultado.append((clave, minimo, maximo))
+
+        return resultado
 

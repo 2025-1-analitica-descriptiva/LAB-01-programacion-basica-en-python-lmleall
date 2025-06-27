@@ -16,21 +16,23 @@ def pregunta_03():
 
     """
     
-import csv
-with open(r"C:\Github\Descriptiva\Laboratorios\LAB-01-programacion-basica-en-python-lmleall\files\input\data.csv", 'r') as archivo_csv:
-    lector_csv = csv.reader(archivo_csv)
-    
-    dict = {}
-    
-    for fila in lector_csv:
-        letra = fila[0][0]  
-        valor = int(fila[0][2])
-        
-        if letra not in dict:
-            dict[letra] = valor
-        else:
-            dict[letra] += valor
+    with open('./files/input/data.csv', 'r') as archivo_csv:
+            
+            suma_letras = {}
+            
+            for fila in archivo_csv:
+                columnas = fila.strip().split('\t')
+                valor = int(columnas[1])
+                letra = columnas[0]
+                
+                if letra not in suma_letras:
+                    suma_letras[letra] = valor
+                else:
+                    suma_letras[letra] += valor
 
-suma_por_letra = sorted(dict.items())
+            lista_tuplas = sorted(suma_letras.items())
+            return lista_tuplas
+ 
+    
 
    

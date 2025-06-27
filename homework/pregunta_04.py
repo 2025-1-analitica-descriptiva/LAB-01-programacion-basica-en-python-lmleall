@@ -13,32 +13,34 @@ def pregunta_04():
 
     Rta/
     [('01', 3),
-     ('02', 4),
-     ('03', 2),
-     ('04', 4),
-     ('05', 3),
-     ('06', 3),
-     ('07', 5),
-     ('08', 6),
-     ('09', 3),
-     ('10', 2),
-     ('11', 2),
-     ('12', 3)]
+    ('02', 4),
+    ('03', 2),
+    ('04', 4),
+    ('05', 3),
+    ('06', 3),
+    ('07', 5),
+    ('08', 6),
+    ('09', 3),
+    ('10', 2),
+    ('11', 2),
+    ('12', 3)]
+  """
+                
+    with open('./files/input/data.csv', 'r') as archivo_csv:
+                                                            
+        registros_por_mes = {}
+            
+        for fila in archivo_csv:
 
-    """
-import csv
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv)
-        
-        listameses = []
-        for fila in lector_csv:
-            columna_1 = fila[0]
-            columna_3 = columna_1.split("\t")
-            fecha = columna_3[2]
-            mes = fecha.split("-")[1]
-            listameses.append(mes)
+            columnas = fila.strip().split('\t')
+            fecha = columnas[2]
+            mes = fecha.split('-')[1]
+                
+            if mes not in registros_por_mes: 
+                registros_por_mes[mes] = 1
+            else:
+                registros_por_mes[mes] += 1
+                                                
+    conteo = sorted(registros_por_mes.items())
+    return conteo
 
-        from collections import Counter
-        listatuplas = sorted(Counter(listameses).items())
-
-   

@@ -25,23 +25,19 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
-import csv
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv)
 
-        dic = {}
+    with open('./files/input/data.csv', 'r') as archivo_csv:
         
-        for fila in lector_csv:
-            #print(fila)
-            listafila = []
-            a = fila[0]
-            col = a.split("\t")
-            #print(col)
-            if int(col[1]) not in dic:
-                listaxnum = []
-                listaxnum.append(col[0])
-                dic[int(col[1])] = listaxnum
-            else:
-                dic[int(col[1])] = dic[int(col[1])] + [col[0]]
-                
-        dic = sorted(dic.items())
+            dic = {}
+            
+            for fila in archivo_csv:
+                columnas = fila.strip().split("\t")
+                letra = columnas[0]
+                numero = int(columnas[1])
+                            
+                if numero not in dic:                
+                    dic[numero] = [letra]
+                else:
+                    dic[numero].append(letra)
+            dic = sorted(dic.items())
+    return dic

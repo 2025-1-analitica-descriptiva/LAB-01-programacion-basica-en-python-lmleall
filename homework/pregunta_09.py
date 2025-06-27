@@ -24,31 +24,23 @@ def pregunta_09():
      'jjj': 18}}
 
     """
-import csv
-import collections
+    with open('./files/input/data.csv', 'r') as archivo_csv:
+        conteo = {}
 
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv)
+        for fila in archivo_csv:
+            columnas = fila.strip().split('\t')
+            col5 = columnas[4]  
 
-        listatotal = []
+            pares = col5.split(',')
+            for par in pares:
+                clave = par.split(':')[0]
+
+                if clave not in conteo:
+                    conteo[clave] = 1
+                else:
+                    conteo[clave] += 1
+
         
-        for fila in lector_csv:
-            #print(fila)
-            listafila = []
-            for col in fila:
-                 if ":" in col:
-                    listaprov = col.split(":")
-                    listafila.append(listaprov)
-            posicion = listafila[0][0].index("\t")
-            listafila[0][0] = listafila[0][0][posicion+1:]
-            #print(listafila)
-
-            for l in listafila:
-                 listatotal.append(l[0])
-            
-        #print(listatotal)
-        #Se crea un objeto tipo Counter que es diferente a un objeto tipo dic
-        count = collections.Counter(listatotal)
-        #print(dic)
-        #Posteriormente se convierte este objeto en una lista de tuplas (.items()) y se organiza alfabeticamente con sorted. Para finalmente construir un diccionario a partir de estas tuplas con dict() 
-        dic = dict(sorted(count.items()))
+        resultado = dict(sorted(conteo.items()))
+        return resultado
+ 

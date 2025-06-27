@@ -16,39 +16,26 @@ def pregunta_05():
 
    """
 
-import csv
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv)
-        dic = {}
-    
-        for fila in lector_csv:
-            a = fila[0]
-            col = a.split("\t")
-            letra = col[0]
-            num = col[1]
-            if letra not in dic:
-                listaxletra = []
-                listaxletra.append(int(num))
-                dic[letra] = listaxletra
-            else:
-                dic[letra] = dic[letra] + [int(num)]
-            
-        for letra in dic:
-            maximo = max(dic[letra])
-            minimo = min(dic[letra])
-            dic[letra] = (maximo,minimo)
-
-
-        listatuplas = sorted(list(dic.items()))
+    with open('./files/input/data.csv', 'r') as archivo_csv:
+            dic_letras = {}
         
-        listatrituplas = []
-        for tupla in listatuplas:
-             tuplaanid = tupla[1]
-             tuplamod = (tupla[0],tuplaanid[0],tuplaanid[1])
-             listatrituplas.append(tuplamod)
-                 
+            for fila in archivo_csv:
+                columnas = fila.strip().split('\t')
+                letra = columnas[0]
+                valor = int(columnas[1])
+                
+                if letra not in dic_letras:                    
+                    dic_letras[letra] = [valor]
+                else:
+                    dic_letras[letra].append(valor)
+                
+            lista_tuplas =[]
+            for letra in sorted(dic_letras.keys()):
+                maximo = max(dic_letras[letra])
+                minimo = min(dic_letras[letra])
+                lista_tuplas.append((letra, maximo, minimo))
 
-
+            return lista_tuplas   
             
     
 

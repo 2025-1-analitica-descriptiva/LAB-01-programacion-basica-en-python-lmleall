@@ -15,25 +15,25 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
-import csv
 
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv, delimiter="\t")
-        
+
+
+    with open('./files/input/data.csv', 'r') as archivo_csv:
         dic = {}
 
-        for fila in lector_csv:
-            #print(fila)
-            listacol5 = fila[4].split(",")
-            #print(listacol5)
-            suma = 0    
-            for l in listacol5:
-                listallavevalor = l.split(":")
-                suma = suma + int(listallavevalor[1])
-            #print(suma)
-            if fila[0] not in dic:
-                dic[fila[0]] = suma
+        for fila in archivo_csv:
+            columnas = fila.strip().split('\t')
+            letra = columnas[0]              # Columna 1
+            valores_col5 = columnas[4].split(',')  # Columna 5, con pares clave:valor
+
+            suma = 0
+            for par in valores_col5:
+                clave, valor = par.split(':')
+                suma += int(valor)
+
+            if letra not in dic:
+                dic[letra] = suma
             else:
-                dic[fila[0]] = dic[fila[0]] + suma
-                
-        dic = dict(sorted(dic.items()))
+                dic[letra] += suma
+
+        return dict(sorted(dic.items()))

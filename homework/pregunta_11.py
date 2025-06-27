@@ -16,20 +16,19 @@ def pregunta_11():
 
 
     """
-import csv
-
-with open('./files/input/data.csv', 'r') as archivo_csv:
-        lector_csv = csv.reader(archivo_csv, delimiter="\t")
-        
+def pregunta_11():
+    with open('./files/input/data.csv', 'r') as archivo_csv:
         dic = {}
 
-        for fila in lector_csv:
-            #print(fila)
-            listacol4 = fila[3].split(",")
-            #print(listacol4)           
-            for letra in listacol4:
+        for fila in archivo_csv:
+            columnas = fila.strip().split('\t')
+            valor_col2 = int(columnas[1])        # Columna 2 (número)
+            letras_col4 = columnas[3].split(',') # Columna 4 (letras separadas por coma)
+
+            for letra in letras_col4:
                 if letra not in dic:
-                    dic[letra] = int(fila[1])
+                    dic[letra] = valor_col2
                 else:
-                    dic[letra] = dic[letra] + int(fila[1])
-        dic = dict(sorted(dic.items()))
+                    dic[letra] += valor_col2
+
+        return dict(sorted(dic.items()))
